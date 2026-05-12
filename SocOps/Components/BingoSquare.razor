@@ -4,12 +4,14 @@
     @onclick="OnClick"
     disabled="@Square.IsFreeSpace"
     class="@GetCssClasses()"
+    style="@GetInlineStyle()"
     aria-pressed="@Square.IsMarked"
     aria-label="@(Square.IsFreeSpace ? "Free space" : Square.Text)">
     <span class="wrap-break-word hyphens-auto">@Square.Text</span>
     @if (Square.IsMarked && !Square.IsFreeSpace)
     {
-        <span class="absolute top-0.5 right-0.5 text-green-600 text-xs">✓</span>
+        <span class="absolute top-0.5 right-0.5 text-xs"
+              style="color:var(--vw-neon-pink);text-shadow:0 0 6px var(--vw-neon-pink);">✓</span>
     }
 </button>
 
@@ -25,16 +27,22 @@
 
     private string GetCssClasses()
     {
-        var baseClasses = "relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight";
+        var baseClasses = "relative flex items-center justify-center p-1 text-center border rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight";
+        var freeSpaceClasses = Square.IsFreeSpace ? "font-orbitron font-bold" : "";
+        return $"{baseClasses} {freeSpaceClasses}";
+    }
 
-        var stateClasses = Square.IsMarked
-            ? IsWinning
-                ? "bg-amber-200 border-amber-400 text-amber-900"
-                : "bg-marked border-marked-border text-green-800"
-            : "bg-white text-gray-700 active:bg-gray-100";
+    private string GetInlineStyle()
+    {
+        if (Square.IsFreeSpace)
+            return "background:rgba(255,0,204,0.12);border-color:var(--vw-neon-pink);color:var(--vw-neon-pink);text-shadow:0 0 8px var(--vw-neon-pink);box-shadow:0 0 8px rgba(255,0,204,0.4),inset 0 0 8px rgba(255,0,204,0.08);font-family:'Orbitron',monospace;letter-spacing:0.05em;";
 
-        var freeSpaceClasses = Square.IsFreeSpace ? "font-bold text-sm" : "";
+        if (IsWinning)
+            return "background:var(--vw-winning-bg);border-color:var(--vw-neon-yellow);color:var(--vw-neon-yellow);text-shadow:0 0 6px var(--vw-neon-yellow);box-shadow:0 0 10px rgba(255,242,0,0.5),inset 0 0 10px rgba(255,242,0,0.08);";
 
-        return $"{baseClasses} {stateClasses} {freeSpaceClasses}";
+        if (Square.IsMarked)
+            return "background:var(--vw-marked-bg);border-color:var(--vw-neon-pink);color:#ffffff;box-shadow:0 0 10px rgba(255,0,204,0.45),inset 0 0 8px rgba(255,0,204,0.08);";
+
+        return "background:var(--vw-square-bg);border-color:rgba(0,245,255,0.35);color:rgba(255,255,255,0.8);";
     }
 }

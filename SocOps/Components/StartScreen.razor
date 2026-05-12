@@ -1,21 +1,38 @@
-<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
-    <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
+<div class="bg-vaporwave scanlines flex flex-col items-center justify-center min-h-full p-6" style="position:relative;">
+    <!-- Content sits above the grid overlay (z-index:2) -->
+    <div class="text-center max-w-sm" style="position:relative;z-index:2;">
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
-            <ul class="text-left text-gray-600 text-sm space-y-2">
-                <li>• Find people who match the questions</li>
-                <li>• Tap a square when you find a match</li>
-                <li>• Get 5 in a row to win!</li>
+        <!-- Retro Sun -->
+        <div class="retro-sun stagger-1"></div>
+
+        <!-- Title -->
+        <h1 class="font-orbitron stagger-2"
+            style="font-size:2.6rem;font-weight:900;color:var(--vw-neon-yellow);text-shadow:0 0 12px var(--vw-neon-yellow),0 0 36px var(--vw-sunset-top),0 0 60px var(--vw-sunset-mid);letter-spacing:0.12em;margin-bottom:0.2rem;">
+            SOC OPS
+        </h1>
+        <p class="stagger-2"
+           style="font-family:'Orbitron',monospace;font-size:0.85rem;letter-spacing:0.35em;color:var(--vw-neon-cyan);text-shadow:0 0 8px var(--vw-neon-cyan);text-transform:uppercase;margin-bottom:2rem;">
+            SOCIAL BINGO
+        </p>
+
+        <!-- How to play card -->
+        <div class="glass-card rounded-lg p-6 mb-8 stagger-3">
+            <h2 class="font-orbitron mb-3"
+                style="font-size:0.75rem;letter-spacing:0.2em;color:var(--vw-neon-pink);text-shadow:0 0 6px var(--vw-neon-pink);text-transform:uppercase;">
+                HOW TO PLAY
+            </h2>
+            <ul class="text-left text-sm space-y-2" style="color:var(--vw-text-dim);">
+                <li>▸ Find people who match the questions</li>
+                <li>▸ Tap a square when you find a match</li>
+                <li>▸ Get 5 in a row to win!</li>
             </ul>
         </div>
 
+        <!-- CTA Button -->
         <button
             @onclick="OnStart"
-            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors">
-            Start Game
+            class="btn-neon w-full py-4 px-8 rounded-lg text-lg stagger-4">
+            START GAME
         </button>
     </div>
 </div>
